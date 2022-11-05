@@ -1,0 +1,66 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url(../fonts/montserrat.ttf);
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url(../fonts/poppins-semibold.ttf);
+  font-weight: 600;
+}
+
+.main {
+  border: 2px solid red;
+  border-radius: 10px;
+  padding: 2rem 2rem 2rem 2rem;
+}
+
+.heading {
+  font-family: "Poppins";
+  padding-bottom: 1rem;
+}
+
+.description {
+  font-family: "Montserrat";
+  font-weight: 500;
+}
+
+form {
+  font-family: "Montserrat";
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.form-btn {
+  font-weight: 500;
+  padding-left: 8rem;
+  padding-right: 8rem;
+}
+
+.download-btn {
+  font-family: "Montserrat";
+  font-weight: 500;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.hash {
+  font-family: "Poppins";
+}
+
+.imp-txt {
+  color: #b74872;
+  font-family: "Montserrat";
+  font-weight: 600;
+}
+
+.alert-banner {
+  font-family: "Montserrat";
+}
+
+.img-container img {
+  object-fit: cover;
+  margin-bottom: 2rem;
+}

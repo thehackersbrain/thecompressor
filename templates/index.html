@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Compressor</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+
+  <body>
+    <div class="container main my-5">
+      <h1 class="heading">The Compressor</h1>
+      <div
+        class="img-container container-fluid d-md-flex justify-content-md-center mx-auto"
+      >
+        <img src="/static/imgs/banner.png" class="banner-img" />
+      </div>
+      <p class="description">
+        Our online cloud service will compress whatever data you would like
+        <span class="imp-txt">gzip</span>! <br />Once your file is compressed,
+        you can download it and verify the integrity via
+        <strong>SHA256</strong> hash!
+      </p>
+      <p class="sub-desc form-text">
+        After 10 compressions, the server cache will clear for resource
+        constraints :)
+      </p>
+      <hr />
+      <form action="/" method="POST">
+        <div class="mb-3">
+          <label for="filename" class="form-label">Filename</label>
+          <input
+            type="text"
+            class="form-control"
+            id="filename"
+            name="filename"
+            placeholder="example.gz"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="contents" class="form-label">Contents</label>
+          <textarea
+            class="form-control"
+            name="contents"
+            id="contents"
+            rows="3"
+            placeholder="Type or paste the contents of the file."
+            required
+          ></textarea>
+        </div>
+        <div class="d-md-flex justify-content-md-center mx-auto">
+          <button type="submit" class="btn btn-outline-primary form-btn">
+            Submit
+          </button>
+        </div>
+      </form>
+      {% if results != None %}
+      <div class="alert alert-success my-3 alert-banner" role="alert">
+        <a
+          href="/download/{{ filename }}"
+          class="btn btn-success download-btn"
+          tabindex="-1"
+          role="button"
+          >Download</a
+        >
+        <b class="hash">SHA256: </b>
+        <p class="imp-txt">{{ shahash }}</p>
+        <hr />
+        <p class="mb-0">
+          <b>Success!</b> Validating your data with
+          <span class="imp-txt">zgrep</span>, see the results below...
+        </p>
+      </div>
+      <div class="alert alert-success my-3 alert-banner" role="alert">
+        <p>{{ results }}</p>
+      </div>
+      {% endif %} {% if status == "1" %}
+      <div class="alert alert-danger alert-banner my-3" role="alert">
+        <p>
+          <strong>Invalid Filename...</strong>, Filename must ends with
+          <span class="imp-txt">.gz</span> extension!
+        </p>
+      </div>
+      {% endif %}
+      <br />
+      {% if error == "filename" %}
+      <div class="alert alert-danger alert-banner" role="alert">
+        <p>
+          <strong>{{ error }}</strong> sould not be empty, please enter a valid
+          filename.
+        </p>
+      </div>
+      {% elif error == "contents" %}
+      <div class="alert alert-danger alert-banner" role="alert">
+        <p>
+          <strong>Contents</strong> field should not be empty, plese enter some
+          content to compress.
+        </p>
+      </div>
+      {% endif %}
+    </div>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
