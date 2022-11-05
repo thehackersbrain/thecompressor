@@ -2,7 +2,6 @@ import gzip
 import hashlib
 import os
 import subprocess
-from time import strftime
 
 from flask import Flask, render_template, request, send_file
 
@@ -38,15 +37,11 @@ def compress():
         for i in reqData:
             if not request.form[i]:
                 data = str(i)
-                return render_template(
-                    "index.html", error=data, results=results
-                )  # "{} field is empty...".format(str(i))
+                return render_template("index.html", error=data, results=results)
 
         if not filename.endswith(".gz"):
             status = 1
-            return render_template(
-                "index.html", status=str(status), results=results
-            )  # "filename must end with '.gz' extension..."
+            return render_template("index.html", status=str(status), results=results)
 
         with gzip.open("/tmp/{}".format(filename), "wb") as fh:
             fh.write(contents.encode("utf-8"))
@@ -80,4 +75,4 @@ def download(filename):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", debug=False)
