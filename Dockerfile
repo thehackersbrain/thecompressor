@@ -1,4 +1,4 @@
-FROM python:3.8-alpine3.11
+FROM python:3.12.0a5-slim
 
 RUN apk add --no-cache gcc alpine-sdk linux-headers gzip=1.10-r0 sed
 
